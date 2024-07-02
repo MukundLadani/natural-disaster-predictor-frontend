@@ -1,0 +1,57 @@
+/* .map-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 300px;
+  bottom: 0;
+  margin: 30px;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+.location-details {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid gray;
+}
+#map {
+  height: 100%;
+} */
+
+.container {
+  display: flex;
+  width: 100%; /* Ensures container fills the available space */
+  height: 100vh; /* Adjust height as needed (vh - viewport height) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.map-container {
+  flex: 7; /* Takes up half the available space by default */
+  position: relative; /* Needed for absolute positioning of map */
+  border: 2px solid black; /* Optional border for container */
+  margin: 30px; /* Optional margin for spacing */
+  margin-right: 20px;
+}
+
+.map-frame {
+  height: 100%; /* Ensures map fills container */
+}
+
+.location-details {
+  flex: 3; /* Takes up the remaining space */
+  margin: 30px;
+  margin-left: 20px;
+  padding: 15px;
+  border: 2px solid gray; /* Optional border for details section */
+}
+
+#map {
+  height: 100%; /* Ensures map fills container */
+}
