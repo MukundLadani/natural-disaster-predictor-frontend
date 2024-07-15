@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
 import * as L from 'leaflet';
 
@@ -124,61 +124,68 @@ export class IndiaMapComponent implements OnInit {
   ) {
     const data = { location };
     var Responsedata: any = null;
-    const confirmation = confirm(
-      `Do you want to see details of this location ${location}?`
-    );
-    if (confirmation) {
-      this.notif = false;
-      this.locationSection = true;
-      this.locationSelected = location;
-      this.loadingPredictions = true;
-      const handleConfirmation = () => {
-        // this.http
-        //   .post('http://localhost:3000/location-details', data)
-        //   .subscribe({
-        //     next: (response) => {
-        //       this.loadingPredictions = false;
-        //       this.locationDetails = response;
-        //       console.log('Location details:', this.locationDetails);
-        //       console.log('Location data sent to backend:', response);
-        //     },
-        //     error: (error) => {
-        //       console.error('Error sending location data:', error);
-        //     },
-        //   });
+    // const confirmation = confirm(
+    //   `Do you want to see details of this location ${location}?`
+    // );
+    // if (confirmation) {
+    this.notif = false;
+    this.locationSection = true;
+    this.locationSelected = location;
+    this.loadingPredictions = true;
+    // const handleConfirmation = () => {
+    // this.http
+    //   .post('http://localhost:3000/location-details', data)
+    //   .subscribe({
+    //     next: (response) => {
+    //       this.loadingPredictions = false;
+    //       this.locationDetails = response;
+    //       console.log('Location details:', this.locationDetails);
+    //       console.log('Location data sent to backend:', response);
+    //     },
+    //     error: (error) => {
+    //       console.error('Error sending location data:', error);
+    //     },
+    //   });
 
-        this.http
-          .get(
-            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,rain,showers,snowfall,weather_code,pressure_msl,surface_pressure,wind_speed_10m&daily=weather_code,sunshine_duration,uv_index_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max,wind_speed_10m_max,shortwave_radiation_sum&past_days=7&forecast_days=14`
-          )
-          .subscribe({
-            next: (response) => {
-              Responsedata = response;
-              Responsedata.location = location;
+    this.http
+      .get(
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,rain,showers,snowfall,weather_code,pressure_msl,surface_pressure,wind_speed_10m&daily=weather_code,sunshine_duration,uv_index_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max,wind_speed_10m_max,shortwave_radiation_sum&past_days=7&forecast_days=14`
+      )
+      .subscribe({
+        next: (response) => {
+          Responsedata = response;
+          Responsedata.location = location;
 
-              console.log('Location weather:', Responsedata);
-              this.http
-                .post('http://localhost:3000/location-weather', Responsedata)
-                .subscribe({
-                  next: (response) => {
-                    this.loadingPredictions = false;
-                    this.locationDetails = response;
-                    console.log('Location details:', this.locationDetails);
-                    console.log('Location data sent to backend:', response);
-                  },
-                  error: (error) => {
-                    console.error('Error sending location data:', error);
-                  },
-                });
-            },
-            error: (error) => {
-              console.error('Error sending location weather:', error);
-            },
-          });
+          console.log('Location weather:', Responsedata);
+          this.http
+            .post(
+              'https://natural-disaster-predictor-backend.onrender.com/location-weather',
+              Responsedata
+            )
+            .subscribe({
+              next: (response) => {
+                this.loadingPredictions = false;
+                this.locationDetails = response;
+                console.log('Location details:', this.locationDetails);
+                console.log('Location data sent to backend:', response);
+              },
+              error: (error) => {
+                this.loadingPredictions = false; // Assuming you want to stop loading animation
+                this.locationDetails =
+                  'Error retrieving weather data. Please try again later.'; // Set an error message for display
+                console.log('Error message for user:', this.locationDetails); // Optional for debugging
+                console.error('Error sending location data:', error);
+              },
+            });
+        },
+        error: (error) => {
+          console.error('Error sending location weather:', error);
+        },
+      });
 
-        console.log('Location weather 2:', Responsedata);
-      };
-      handleConfirmation(); // Call the function immediately
-    }
+    console.log('Location weather 2:', Responsedata);
+    // };
+    //   handleConfirmation(); // Call the function immediately
+    // }
   }
 }

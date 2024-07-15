@@ -25,19 +25,22 @@
 .container {
   display: flex;
   width: 100%; /* Ensures container fills the available space */
-  height: 100vh; /* Adjust height as needed (vh - viewport height) */
+  height: calc(
+    101vh - 40px
+  ); /* Adjust height as needed (vh - viewport height) */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
 }
 
 .map-container {
   flex: 7; /* Takes up half the available space by default */
   position: relative; /* Needed for absolute positioning of map */
-  border: 2px solid black; /* Optional border for container */
-  margin: 30px; /* Optional margin for spacing */
-  margin-right: 20px;
+  margin: 10px; /* Optional margin for spacing */
+  margin-right: 5px;
+  height: auto;
 }
 
 .map-frame {
@@ -46,18 +49,59 @@
 
 .location-details {
   flex: 3; /* Takes up the remaining space */
-  margin: 30px;
-  margin-left: 20px;
+  height: auto;
+  margin: 10px;
+  margin-left: 5px;
   padding: 15px;
-  border: 2px solid black; /* Optional border for details section */
+  overflow-y: auto;
+  border: 1.5px solid grey; /* Optional border for details section */
 }
 
 #map {
   height: 100%; /* Ensures map fills container */
 }
 
-::ng-deep
-  .mat-mdc-progress-spinner
-  .mdc-circular-progress__indeterminate-circle-graphic {
-  stroke: #aeabff;
+.entry-text {
+  font-weight: 500;
+}
+
+.ai-warning {
+  font-weight: 600;
+  font-size: x-small;
+  line-height: 1.2;
+}
+
+.dark-theme {
+  background-color: #222; /* Dark background color */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ddd; /* Light text color */
+}
+
+.dark-theme h6,
+.dark-theme p,
+.dark-theme h5,
+.dark-theme small {
+  color: inherit; /* Inherit the text color from the .dark-theme class */
+}
+
+.navbar {
+  background-color: #333; /* Adjust background color */
+  border-bottom: 1px solid grey;
+  color: #fff; /* Adjust text color */
+  padding: 10px 20px; /* Add padding */
+  display: flex; /* Arrange links horizontally  */
+}
+
+.navbar-logo {
+  /* font-size: 10px;  Adjust font size as needed */
+
+  width: auto;
+  height: 25px;
+  margin-right: 10px;
+  /* font-size: 20px; */
+  font-weight: 500; /* Make text bold for logo appearance */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-decoration: none;
+  color: #fff; /* Assuming white color for navbar text */
 }
