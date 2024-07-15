@@ -49,9 +49,15 @@
   margin: 30px;
   margin-left: 20px;
   padding: 15px;
-  border: 2px solid gray; /* Optional border for details section */
+  border: 2px solid black; /* Optional border for details section */
 }
 
 #map {
   height: 100%; /* Ensures map fills container */
+}
+
+::ng-deep
+  .mat-mdc-progress-spinner
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #aeabff;
 }

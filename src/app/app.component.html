@@ -1,1 +1,6 @@
-<app-india-map></app-india-map>
+<div *ngIf="!isClicked">
+  <app-earth (click)="handleClick()"></app-earth>
+</div>
+<div *ngIf="isClicked">
+  <app-india-map></app-india-map>
+</div>
