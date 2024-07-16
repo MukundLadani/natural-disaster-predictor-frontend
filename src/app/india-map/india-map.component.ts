@@ -158,7 +158,7 @@ export class IndiaMapComponent implements OnInit {
 
           this.http
             .post(
-              'https://natural-disaster-predictor-backend.onrender.com//location-weather',
+              'https://natural-disaster-predictor-backend.onrender.com/location-weather',
               Responsedata
             )
             .subscribe({
