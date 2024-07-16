@@ -1,9 +1,8 @@
 <nav class="navbar">
-  <img
-    src="assets/weatherdost-logo-white.png"
-    alt="WeatherDost"
+  <img src="assets/logo.png" alt="WeatherDost" class="navbar-logo" /><a
     class="navbar-logo"
-  /><a class="navbar-logo">WeatherDost</a>
+    >WeatherDost</a
+  >
 </nav>
 <div class="container dark-theme">
   <div class="map-container dark-theme">
@@ -19,11 +18,11 @@
       <h5>Location Selected:</h5>
       <p *ngIf="locationSelected">{{ locationSelected }}</p>
       <div *ngIf="loadingPredictions">
-        <h5>Predicting....</h5>
+        <h5>Predicting...</h5>
         <mat-spinner></mat-spinner>
       </div>
 
-      <div class="locationDetails dark-theme" *ngIf="locationDetails">
+      <div class="dark-theme" *ngIf="locationDetails">
         <h5>Predictions:</h5>
 
         <p>{{ locationDetails }}</p>

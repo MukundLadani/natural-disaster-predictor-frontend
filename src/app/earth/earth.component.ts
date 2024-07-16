@@ -41,7 +41,7 @@ export class EarthComponent implements OnInit, AfterViewInit {
       1000
     );
     const detail = 15;
-    this.camera.position.z = 3.5;
+    this.camera.position.z = 4;
     const geometry = new THREE.IcosahedronGeometry(1, detail);
 
     // light
@@ -51,9 +51,6 @@ export class EarthComponent implements OnInit, AfterViewInit {
     const sunLight = new THREE.DirectionalLight(0xffffff, 2.2);
     sunLight.position.set(-2, 0.8, 1.5);
     this.scene.add(sunLight);
-    // const light = new THREE.DirectionalLight(0xffffff, 2);
-    // light.position.set(5, 3, 5);
-    // this.scene.add(light);
 
     const earthGroup = new THREE.Group();
     earthGroup.rotation.z = (-23.4 * Math.PI) / 180;
@@ -72,8 +69,6 @@ export class EarthComponent implements OnInit, AfterViewInit {
 
     const lightsMat = new THREE.MeshBasicMaterial({
       map: textureLoader.load('assets/textures/03_earthlights1k.jpg'),
-      // transparent: true,
-      // opacity: 1,
       blending: THREE.AdditiveBlending,
     });
 
@@ -108,24 +103,6 @@ export class EarthComponent implements OnInit, AfterViewInit {
 
     this.stars = getStarfield({ numStars: 5000 });
     this.scene.add(this.stars);
-    // manager.onLoad = () => {
-    //   // call back
-    //   // const geometry = new THREE.SphereGeometry(0.5, 36, 32);
-    // };
-
-    // this.earthSurface.map = textureLoader.load(
-    //   'assets/textures/00_earthmap1k.jpg'
-    // );
-
-    // manager.onLoad = () => {
-    //   // call back
-    //   const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-    //   this.mesh = new THREE.Mesh(geometry, this.earthSurface);
-    //   this.scene.add(this.mesh);
-    //   // this.rerender();
-
-    //   console.log(this.earthSurface);
-    // };
   }
 
   ngOnInit() {}

@@ -149,31 +149,33 @@ export class IndiaMapComponent implements OnInit {
 
     this.http
       .get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,rain,showers,snowfall,weather_code,pressure_msl,surface_pressure,wind_speed_10m&daily=weather_code,sunshine_duration,uv_index_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max,wind_speed_10m_max,shortwave_radiation_sum&past_days=7&forecast_days=14`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,rain,showers,snowfall,weather_code,wind_speed_10m&daily=weather_code,sunshine_duration,uv_index_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_probability_max,wind_speed_10m_max,shortwave_radiation_sum&past_days=7&forecast_days=14`
       )
       .subscribe({
         next: (response) => {
           Responsedata = response;
           Responsedata.location = location;
 
-          console.log('Location weather:', Responsedata);
           this.http
             .post(
-              'https://natural-disaster-predictor-backend.onrender.com/location-weather',
+              'https://natural-disaster-predictor-backend.onrender.com//location-weather',
               Responsedata
             )
             .subscribe({
               next: (response) => {
                 this.loadingPredictions = false;
                 this.locationDetails = response;
-                console.log('Location details:', this.locationDetails);
-                console.log('Location data sent to backend:', response);
+                // console.log('Location details:', this.locationDetails);
+                // console.log('Location data sent to backend:', response);
               },
               error: (error) => {
                 this.loadingPredictions = false; // Assuming you want to stop loading animation
+
                 this.locationDetails =
-                  'Error retrieving weather data. Please try again later.'; // Set an error message for display
-                console.log('Error message for user:', this.locationDetails); // Optional for debugging
+                  'Error retrieving weather data. Please try again later.'; // General error message
+
+                // Set an error message for display
+                // console.log('Error message for user:', this.locationDetails); // Optional for debugging
                 console.error('Error sending location data:', error);
               },
             });
@@ -183,7 +185,6 @@ export class IndiaMapComponent implements OnInit {
         },
       });
 
-    console.log('Location weather 2:', Responsedata);
     // };
     //   handleConfirmation(); // Call the function immediately
     // }

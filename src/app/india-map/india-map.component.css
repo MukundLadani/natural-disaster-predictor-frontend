@@ -26,7 +26,7 @@
   display: flex;
   width: 100%; /* Ensures container fills the available space */
   height: calc(
-    101vh - 40px
+    101vh - 50px
   ); /* Adjust height as needed (vh - viewport height) */
   top: 0;
   left: 0;
@@ -38,8 +38,8 @@
 .map-container {
   flex: 7; /* Takes up half the available space by default */
   position: relative; /* Needed for absolute positioning of map */
-  margin: 10px; /* Optional margin for spacing */
-  margin-right: 5px;
+  margin: 16px; /* Optional margin for spacing */
+  margin-right: 8px;
   height: auto;
 }
 
@@ -50,8 +50,8 @@
 .location-details {
   flex: 3; /* Takes up the remaining space */
   height: auto;
-  margin: 10px;
-  margin-left: 5px;
+  margin: 16px;
+  margin-left: 8px;
   padding: 15px;
   overflow-y: auto;
   border: 1.5px solid grey; /* Optional border for details section */
@@ -104,4 +104,29 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-decoration: none;
   color: #fff; /* Assuming white color for navbar text */
+}
+
+/* for iphones */
+@media only screen and (max-width: 550px) {
+  .location-details h5,
+  .location-details h6 {
+    font-size: 14px; /* Adjusted for smaller screens */
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .location-details p {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .ai-warning {
+    font-size: 10px; /* Smaller font size for warnings */
+  }
+
+  .location-details {
+    padding: 10px; /* Reduced padding for smaller screens */
+    margin: 16px; /* Reduced margin for consistency */
+    margin-left: 8px;
+  }
 }
