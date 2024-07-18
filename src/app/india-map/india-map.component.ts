@@ -105,6 +105,9 @@ export class IndiaMapComponent implements OnInit {
     this.locationSelected = location;
     this.loadingPredictions = true;
 
+    //
+    // http://localhost:3000
+
     this.http
       .post(
         'https://natural-disaster-predictor-backend.onrender.com/location-weather',
@@ -120,7 +123,8 @@ export class IndiaMapComponent implements OnInit {
         error: (error) => {
           this.loadingPredictions = false;
           if (error.status === 429) {
-            this.locationDetails = 'Too Many requests. Please try again later.';
+            this.locationDetails =
+              '(Too Many requests) It has reached maximum requests limit. Please try again later.';
           }
           // Assuming you want to stop loading animation
           else {
