@@ -14,8 +14,8 @@
 .map-container {
   flex: 7; /* Takes up half the available space by default */
   position: relative; /* Needed for absolute positioning of map */
-  margin: 16px; /* Optional margin for spacing */
-  margin-right: 8px;
+  margin: 14px; /* Optional margin for spacing */
+  margin-right: 7px;
   height: auto;
 }
 
@@ -26,8 +26,8 @@
 .location-details {
   flex: 3; /* Takes up the remaining space */
   height: auto;
-  margin: 16px;
-  margin-left: 8px;
+  margin: 14px;
+  margin-left: 7px;
   padding: 15px;
   overflow-y: auto;
   border: 1.5px solid grey; /* Optional border for details section */
@@ -83,7 +83,53 @@
 }
 
 /* for iphones */
+/* @media only screen and (max-width: 550px) {
+  .location-details h5,
+  .location-details h6 {
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .location-details p {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .ai-warning {
+    font-size: 8px; 
+  }
+
+  .location-details {
+    padding: 8px;
+    margin: 14px;
+    margin-left: 7px;
+  }
+} */
+
 @media only screen and (max-width: 550px) {
+  .container {
+    flex-direction: column; /* Stack map and location details vertically */
+    height: auto; /* Adjust height for stacking */
+  }
+
+  .map-container {
+    flex: none;
+    width: calc(100% - 28px);
+    margin: 14px;
+    margin-bottom: 7px;
+    height: 55vh;
+  }
+
+  .location-details {
+    flex: none;
+    width: calc(100% - 42px);
+    margin: 14px;
+    margin-top: 7px;
+    height: 35vh;
+    padding: 7px;
+  }
+
   .location-details h5,
   .location-details h6 {
     font-size: 14px; /* Adjusted for smaller screens */
@@ -92,17 +138,11 @@
   }
 
   .location-details p {
-    font-size: 12px;
+    font-size: 10px;
     line-height: 1.2;
   }
 
   .ai-warning {
-    font-size: 10px; /* Smaller font size for warnings */
-  }
-
-  .location-details {
-    padding: 10px; /* Reduced padding for smaller screens */
-    margin: 16px; /* Reduced margin for consistency */
-    margin-left: 8px;
+    font-size: 8px; /* Smaller font size for warnings */
   }
 }
