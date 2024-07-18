@@ -105,25 +105,30 @@ export class IndiaMapComponent implements OnInit {
     this.locationSelected = location;
     this.loadingPredictions = true;
 
-    this.http.post('http://localhost:3000/location-weather', data).subscribe({
-      next: (response) => {
-        this.loadingPredictions = false;
-        this.locationDetails = response;
-        // console.log('Location details:', this.locationDetails);
-        // console.log('Location data sent to backend:', response);
-      },
-      error: (error) => {
-        this.loadingPredictions = false;
-        if (error.status === 429) {
-          this.locationDetails = 'Too Many requests. Please try again later.';
-        }
-        // Assuming you want to stop loading animation
-        else {
-          this.locationDetails =
-            'Error retrieving weather data. Please try again later.'; // General error message
-        }
-        console.error('Error sending location data:', error);
-      },
-    });
+    this.http
+      .post(
+        'https://natural-disaster-predictor-backend.onrender.com/location-weather',
+        data
+      )
+      .subscribe({
+        next: (response) => {
+          this.loadingPredictions = false;
+          this.locationDetails = response;
+          // console.log('Location details:', this.locationDetails);
+          // console.log('Location data sent to backend:', response);
+        },
+        error: (error) => {
+          this.loadingPredictions = false;
+          if (error.status === 429) {
+            this.locationDetails = 'Too Many requests. Please try again later.';
+          }
+          // Assuming you want to stop loading animation
+          else {
+            this.locationDetails =
+              'Error retrieving weather data. Please try again later.'; // General error message
+          }
+          console.error('Error sending location data:', error);
+        },
+      });
   }
 }
