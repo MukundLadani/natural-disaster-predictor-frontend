@@ -105,7 +105,7 @@ export class IndiaMapComponent implements OnInit {
     this.locationSelected = location;
     this.loadingPredictions = true;
 
-    //
+    // https://natural-disaster-predictor-backend.onrender.com
     // http://localhost:3000
 
     this.http
